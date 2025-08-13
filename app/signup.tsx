@@ -1,9 +1,9 @@
 // SmartSpend Tracker - React Native app for tracking expenses with add, view, and manage features.
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Alert, Image, SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { createUser, setLoggedIn } from './utils/auth';
-import { StyleSheet } from 'react-native';
 
 export default function Signup() {
   const router = useRouter();
@@ -21,7 +21,7 @@ await setLoggedIn(email.trim());
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }} edges={['top']}>
       <View style={{ flex: 1, padding: 24, justifyContent: 'center' }}>
         <View style={{ alignItems: 'center', marginBottom: 28 }}>
           <Image

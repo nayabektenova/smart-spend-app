@@ -2,6 +2,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { Link } from 'expo-router';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getCurrentUser } from '../utils/auth';
 import { getTransactions, Transaction } from '../utils/storage';
 
@@ -63,23 +64,24 @@ export default function HomeScreen() {
   const spentPct = Math.min((expense / totalMoved) * 100, 100);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingBottom: 24 }}>
-      {/* Header with Logo */}
-      <View style={styles.header}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <Image
-            source={require('../../assets/images/Smartspend-logo-small.png')}
-            style={{ width: 48, height: 48, borderRadius: 16 }}
-            resizeMode="contain"
-          />
-          <View>
-            <Text style={styles.headerTitle}>SmartSpend</Text>
-            <Text style={styles.headerSub}>Personal Expense Tracker</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={['top']}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 24 }}>
+        {/* Header with Logo */}
+        <View style={styles.header}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <Image
+              source={require('../../assets/images/Smartspend-logo-small.png')}
+              style={{ width: 48, height: 48, borderRadius: 16 }}
+              resizeMode="contain"
+            />
+            <View>
+              <Text style={styles.headerTitle}>SmartSpend</Text>
+              <Text style={styles.headerSub}>Personal Expense Tracker</Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={{ paddingHorizontal: 16, gap: 16, marginTop: 16 }}>
+      <View style={{ paddingHorizontal: 16, gap: 16, marginTop: 8 }}>
         <View>
           <Text style={styles.h2}>Welcome back, {name}!</Text>
           <Text style={styles.sub}>Here’s a summary of your spending this month</Text>
@@ -173,7 +175,8 @@ export default function HomeScreen() {
           </Link>
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

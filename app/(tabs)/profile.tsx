@@ -5,16 +5,17 @@ import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import {
-  ActivityIndicator,
-  Alert,
-  Linking,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    ActivityIndicator,
+    Alert,
+    Linking,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { getCurrentUser, getSession, signOut, updateUser } from '../utils/auth';
 
 const CURRENCY_KEY = 'pref_currency';
@@ -161,11 +162,12 @@ export default function ProfileScreen() {
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={[styles.scroll, { flexGrow: 1 }]}
-      keyboardShouldPersistTaps="handled"
-    >
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={['top']}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={[styles.scroll, { flexGrow: 1 }]}
+        keyboardShouldPersistTaps="handled"
+      >
       {/* Header */}
       <View style={styles.header}>
         <Text style={[styles.sectionTitle, { marginTop: 8 }]}>Profile</Text>
@@ -300,7 +302,8 @@ export default function ProfileScreen() {
       </TouchableOpacity>
 
       <View style={{ height: 24 }} />
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

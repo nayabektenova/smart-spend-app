@@ -1,6 +1,7 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Logo from '../../assets/images/Smartspend-logo.png';
 import { getTransactions, Transaction } from '../utils/storage';
 
@@ -115,12 +116,13 @@ export default function HistoryScreen() {
   }, [filtered, fromDate, toDate]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingBottom: 24 }}>
-      {/* Header with BIG logo */}
-      <View style={styles.header}>
-        <Image source={Logo} style={{ width: 250, height: 100 }} resizeMode="contain" />
-        <Text style={styles.headerSub}>Transaction History</Text>
-      </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={['top']}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 24 }}>
+        {/* Header with BIG logo */}
+        <View style={styles.header}>
+          <Image source={Logo} style={{ width: 250, height: 100 }} resizeMode="contain" />
+          <Text style={styles.headerSub}>Transaction History</Text>
+        </View>
 
       <View style={{ paddingHorizontal: 16, gap: 16, marginTop: 20 }}>
         {/* Filters */}
@@ -259,7 +261,8 @@ export default function HistoryScreen() {
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

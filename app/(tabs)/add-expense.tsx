@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { Alert, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { Transaction, saveTransaction } from '../utils/storage';
  
 import Logo from '../../assets/images/Smartspend-logo.png';
@@ -85,12 +86,13 @@ export default function AddExpenseScreen() {
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: colors.bg }} contentContainerStyle={{ paddingBottom: 24 }}>
-      {/* Header with BIG logo */}
-      <View style={styles.header}>
-        <Image source={Logo} style={{ width: 250, height: 100 }} resizeMode="contain" />
-        <Text style={styles.headerSub}>Add New {type === 'income' ? 'Income' : 'Expense'}</Text>
-      </View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.bg }} edges={['top']}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 24 }}>
+        {/* Header with BIG logo */}
+        <View style={styles.header}>
+          <Image source={Logo} style={{ width: 250, height: 100 }} resizeMode="contain" />
+          <Text style={styles.headerSub}>Add New {type === 'income' ? 'Income' : 'Expense'}</Text>
+        </View>
 
       <View style={{ paddingHorizontal: 16, gap: 16, marginTop: 16 }}>
         {/* Type toggle */}
@@ -174,7 +176,8 @@ export default function AddExpenseScreen() {
           <Text style={{ color: '#374151', fontWeight: '700' }}>Cancel</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
