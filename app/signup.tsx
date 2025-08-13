@@ -1,3 +1,4 @@
+// SmartSpend Tracker - React Native app for tracking expenses with add, view, and manage features.
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert, Image, SafeAreaView, Text, TextInput, TouchableOpacity, View } from 'react-native';
